@@ -11,5 +11,11 @@ public class Actions : MonoBehaviour {
 	
 	}
 
-	// load back menu scene (how?)
+	public void OnObjectSelected() {
+
+	}
+
+	public void OnClearSelection() {
+
+	}
 }
