@@ -14,9 +14,7 @@ public class Buttons : MonoBehaviour {
 		Debug.Log("Start");
 		bg.Stop();
 		overlay.SetActive(true);
-		overlay.GetComponent<FadeIn>().StartFade();
-
-		Application.LoadLevel(1);
+		overlay.GetComponent<FadeIn>().StartFade(Application.LoadLevel, 1);
 	}
 
 	public void OnQuitClick() {
