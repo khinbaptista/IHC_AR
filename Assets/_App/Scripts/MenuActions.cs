@@ -2,29 +2,32 @@
 using System.Collections;
 
 public class MenuActions : MonoBehaviour {
-
 	private Animator anim;
-	private bool backMainMenu;
 
 	void Start() {
 		anim = GetComponent<Animator>();
 
-		backMainMenu = false;
 		anim.SetBool("displayMenu", true);
 	}
 
 	public void OnCloseClick() {
-		backMainMenu = true;
-
+		ConfirmationBox.Show("Exit?", OnConfirmExit, OnCancelExit);
 		anim.SetBool("displayMenu", false);
 	}
 
-	public void OnMenuShow() {
+	public void OnMenuShown() {
 
 	}
 
-	public void OnMenuHide() {
-		if (backMainMenu)
-			Application.LoadLevel(0);
+	public void OnMenuHidden() {
+		
+	}
+
+	public void OnConfirmExit() {
+		Application.LoadLevel(0);
+	}
+
+	public void OnCancelExit() {
+		anim.SetBool("displayMenu", true);
 	}
 }

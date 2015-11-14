@@ -4,6 +4,8 @@ using System.Collections;
 
 public class ConfirmationBox : MonoBehaviour {
 
+	static ConfirmationBox instance;
+
 	public delegate void Callback();
 
 	public Callback OnConfirm;
@@ -19,15 +21,20 @@ public class ConfirmationBox : MonoBehaviour {
 
 		if (anim == null)
 			enabled = false;
+
+		instance = this;
 	}
 	
 	void Update () {
 	
 	}
 
-	public void Show(string message) {
-		text.text = message;
-		anim.SetBool("display", true);
+	static public void Show(string message, Callback onConfirm, Callback onCancel) {
+		instance.text.text = message;
+
+		instance.OnConfirm = onConfirm;
+		instance.OnCancel = onCancel;
+		instance.anim.SetBool("display", true);
 	}
 	
 	public void OnConfirmClick() {

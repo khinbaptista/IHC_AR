@@ -14,11 +14,21 @@ public class Buttons : MonoBehaviour {
 		Debug.Log("Start");
 		bg.Stop();
 		overlay.SetActive(true);
-		overlay.GetComponent<FadeIn>().StartFade(Application.LoadLevel, 1);
+		overlay.GetComponent<FadeIn>().StartFade(AfterFade_Start);
 	}
 
 	public void OnQuitClick() {
 		Debug.Log("Quit");
+
+		overlay.SetActive(true);
+		overlay.GetComponent<FadeIn>().StartFade(AfterFade_Quit);
+	}
+
+	public void AfterFade_Start() {
+		Application.LoadLevel(1);
+	}
+
+	public void AfterFade_Quit() {
 		Application.Quit();
 	}
 }

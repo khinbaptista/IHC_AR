@@ -11,9 +11,8 @@ public class FadeIn : MonoBehaviour {
 
 	Color color;
 
-	public delegate void Callback(int param);
+	public delegate void Callback();
 	public Callback OnFadeEnd;
-	private int param;
 
 	void Start () {
 		text.enabled = false;
@@ -25,9 +24,8 @@ public class FadeIn : MonoBehaviour {
 		img.color = color;
 	}
 	
-	public void StartFade(Callback callback, int param) {
+	public void StartFade(Callback callback) {
 		OnFadeEnd = callback;
-		this.param = param;
 		StartCoroutine(Fade());
 	}
 
@@ -48,6 +46,6 @@ public class FadeIn : MonoBehaviour {
 		}
 
 		if (OnFadeEnd != null)
-			OnFadeEnd(param);
+			OnFadeEnd();
 	}
 }
