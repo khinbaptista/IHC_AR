@@ -41,6 +41,7 @@ public class ConfirmationBox : MonoBehaviour {
 	}
 
 	public void AnimationFinished() {
-		OnAnimationEnd();
+		if (OnAnimationEnd != null)
+			OnAnimationEnd();
 	}
 }
