@@ -10,6 +10,10 @@ public class CatalogItem : MonoBehaviour {
 	private Image image;
 
 	[SerializeField]
+	private Transform item;
+	public Transform Item { get { return item; } }
+
+	[SerializeField]
 	private Catalog container;
 
 	private bool _isSelected;
@@ -30,6 +34,8 @@ public class CatalogItem : MonoBehaviour {
 
 		if (isSelected)
 			container.SetSelected(this);
+		else
+			container.IgnoreSelected();
 	}
 
 }

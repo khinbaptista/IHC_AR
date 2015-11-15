@@ -29,6 +29,10 @@ public class Catalog : MonoBehaviour {
 		return selected;
 	}
 
+	public void IgnoreSelected() {
+		selected = null;
+	}
+
 	public void OnConfirm() {
 		if (selected == null)
 			return;
@@ -38,7 +42,7 @@ public class Catalog : MonoBehaviour {
 
 	public void OnCancel() {
 		if (selected != null) {
-			// diselect
+			selected.SetSelection(false);
 			selected = null;
 		}
 
