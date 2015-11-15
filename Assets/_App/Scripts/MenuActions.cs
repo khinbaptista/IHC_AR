@@ -2,16 +2,32 @@
 using System.Collections;
 
 public class MenuActions : MonoBehaviour {
+
+	[SerializeField]
+	private Catalog catalog;
 	private Animator anim;
 
 	void Start() {
 		anim = GetComponent<Animator>();
-
-		anim.SetBool("displayMenu", true);
+		Show();
 	}
 
 	public void OnCloseClick() {
 		ConfirmationBox.Show("Exit?", OnConfirmExit, OnCancelExit);
+		Hide();
+	}
+
+	public void OnCatalogClick() {
+		catalog.Show(this.Show, this.Show);
+		Hide();
+	}
+
+	public void Show() {
+		anim.SetBool("displayMenu", true);
+
+	}
+
+	public void Hide() {
 		anim.SetBool("displayMenu", false);
 	}
 
@@ -28,6 +44,6 @@ public class MenuActions : MonoBehaviour {
 	}
 
 	public void OnCancelExit() {
-		anim.SetBool("displayMenu", true);
+		Show();
 	}
 }
