@@ -6,7 +6,8 @@ public class Catalog : MonoBehaviour {
 	private Animator anim;
 
 	public delegate void Callback();
-	public Callback _onCancel;
+	private Callback _onConfirm;
+	private Callback _onCancel;
 
 	private bool canceled;
 
@@ -50,8 +51,12 @@ public class Catalog : MonoBehaviour {
 		Hide();
 	}
 
-	public void Show(Callback onCancel = null) {
+	public void Show(Callback onConfirm, Callback onCancel = null) {
+		SetSelected(null);
+
+		canceled = false;
 		anim.SetBool("display", true);
+		_onConfirm = onConfirm;
 		_onCancel = onCancel;
 	}
 
@@ -66,5 +71,7 @@ public class Catalog : MonoBehaviour {
 	public void OnCatalogHidden() {
 		if (canceled && _onCancel != null)
 			_onCancel();
+		else if (_onConfirm != null)
+			_onConfirm();
 	}
 }

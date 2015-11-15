@@ -18,7 +18,7 @@ public class MenuActions : MonoBehaviour {
 	}
 
 	public void OnCatalogClick() {
-		catalog.Show(this.Show);
+		catalog.Show(this.Show, this.Show);
 		Hide();
 	}
 
