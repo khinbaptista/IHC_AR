@@ -19,6 +19,9 @@ public class Catalog : MonoBehaviour {
 	}
 
 	public void SetSelected(CatalogItem item) {
+		if (selected != null)
+			selected.SetSelection(false);
+
 		selected = item;
 	}
 
