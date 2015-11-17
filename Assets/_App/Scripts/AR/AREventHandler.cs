@@ -15,8 +15,9 @@ public class AREventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 	private DataSet _dataSet;
 	private ImageTargetBuilder.FrameQuality _frameQuality = ImageTargetBuilder.FrameQuality.FRAME_QUALITY_NONE;
 
+	private int id = 0;
 
-	void Start () {
+	public void Start () {
 		_targetBuilder = GetComponent<UserDefinedTargetBuildingBehaviour>();
 
 		if (_targetBuilder != null)
@@ -46,13 +47,15 @@ public class AREventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 		_dataSet.DestroyAllTrackables(true);
 
 		ImageTargetBehaviour targetCopy = (ImageTargetBehaviour)Instantiate(_targetTemplate);
-		targetCopy.gameObject.name = targetName;
+		targetCopy.gameObject.name = targetName + id;
 
 		_dataSet.CreateTrackable(trackableSource, targetCopy.gameObject);
 		_objectTracker.ActivateDataSet(_dataSet);
+
+		id++;
 	}
 
 	public void AddNewTrackableSource() {
-		_targetBuilder.BuildNewTarget(targetName, _targetTemplate.GetSize().x);
+		_targetBuilder.BuildNewTarget(targetName + id, _targetTemplate.GetSize().x);
 	}
 }
