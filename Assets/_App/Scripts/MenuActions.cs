@@ -21,7 +21,7 @@ public class MenuActions : MonoBehaviour {
 	}
 
 	public void OnCatalogClick() {
-		UIManager.ShowCatalog(null);
+		UIManager.ShowCatalog(UIManager.NewItemAdded);
 	}
 
 	public void Show() {

@@ -12,6 +12,9 @@ public class Catalog : MonoBehaviour {
 
 	public bool Confirmed { get { return selected != null; } }
 
+	[SerializeField]
+	private LayerMask objectsLayer;
+
 	void Start () {
 		anim = GetComponent<Animator>();
 	}
@@ -23,8 +26,9 @@ public class Catalog : MonoBehaviour {
 	public void SetSelected(CatalogItem item) {
 		if (selected != null)
 			selected.SetSelection(false);
-
+		
 		selected = item;
+		selected.gameObject.layer = objectsLayer;
 	}
 
 	public CatalogItem GetSelected() {

@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour {
 	public ConfirmationBox confirmationBox;
 	public MenuActions menu;
 	public Catalog catalog;
+	public Toolbox tools;
 
 	void Start() {
 		instance = this;
@@ -48,5 +49,24 @@ public class UIManager : MonoBehaviour {
 	public static void Confirmation(string message, Callback onConfirm, Callback onCancel) {
 		instance.menu.Hide();
 		ConfirmationBox.Show(message, onConfirm, onCancel);
+	}
+
+	public static void ShowToolbox() {
+		instance.menu.Hide();
+		instance.tools.Show();
+	}
+
+	public static void HideToolbox() {
+		instance.tools.Hide();
+		instance.menu.Show();
+	}
+
+	public static void NewItemAdded() {
+		instance.tools.NewItem(instance.catalog.GetSelected().Item);
+		ShowToolbox();
+	}
+
+	public static Transform GetCatalogSelectedItem() {
+		return instance.catalog.GetSelected().Item;
 	}
 }
