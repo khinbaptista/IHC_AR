@@ -5,11 +5,12 @@ public class Catalog : MonoBehaviour {
 	private CatalogItem selected;
 	private Animator anim;
 
-	public delegate void Callback();
 	private Callback _onConfirm;
 	private Callback _onCancel;
 
 	private bool canceled;
+
+	public bool Confirmed { get { return selected != null; } }
 
 	void Start () {
 		anim = GetComponent<Animator>();
@@ -38,7 +39,7 @@ public class Catalog : MonoBehaviour {
 		if (selected == null)
 			return;
 
-		Hide();
+		UIManager.HideCatalog();
 	}
 
 	public void OnCancel() {
@@ -48,7 +49,7 @@ public class Catalog : MonoBehaviour {
 		}
 
 		canceled = true;
-		Hide();
+		UIManager.HideCatalog();
 	}
 
 	public void Show(Callback onConfirm, Callback onCancel = null) {

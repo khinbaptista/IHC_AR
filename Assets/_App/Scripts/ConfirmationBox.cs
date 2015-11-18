@@ -6,8 +6,6 @@ public class ConfirmationBox : MonoBehaviour {
 
 	static ConfirmationBox instance;
 
-	public delegate void Callback();
-
 	public Callback OnConfirm;
 	public Callback OnCancel;
 	private Callback OnAnimationEnd;

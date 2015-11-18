@@ -3,30 +3,32 @@ using System.Collections;
 
 public class ScanPrompt : MonoBehaviour {
 
-	public MenuActions menu;
+	public AREventHandler vuforia;
 	private Animator anim;
 
 	bool shown = false;
 
 	void Start () {
 		anim = GetComponent<Animator>();
-		//Display();
 	}
 
 	void Update() {
 		if (!shown) {
 			shown = true;
-			Display();
+			UIManager.ShowScan();
 		}
 	}
 
-	public void Display() {
-		menu.Hide();
+	public void OnClick() {
+		UIManager.HideScan();
+		vuforia.AddNewTrackableSource();
+	}
+
+	public void Show() {
 		anim.SetBool("display", true);
 	}
 
 	public void Hide() {
 		anim.SetBool("display", false);
-		menu.Show();
 	}
 }

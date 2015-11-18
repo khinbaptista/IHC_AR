@@ -13,13 +13,11 @@ public class MenuActions : MonoBehaviour {
 	}
 
 	public void OnCloseClick() {
-		ConfirmationBox.Show("Exit?", OnConfirmExit, OnCancelExit);
-		Hide();
+		UIManager.Confirmation("Exit?", OnConfirmExit, OnCancelExit);
 	}
 
 	public void OnCatalogClick() {
-		catalog.Show(this.Show, this.Show);
-		Hide();
+		UIManager.ShowCatalog(null);
 	}
 
 	public void Show() {
