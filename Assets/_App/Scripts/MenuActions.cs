@@ -16,6 +16,10 @@ public class MenuActions : MonoBehaviour {
 		UIManager.Confirmation("Exit?", OnConfirmExit, OnCancelExit);
 	}
 
+	public void OnInfoClick() {
+		UIManager.Information("This is information");
+	}
+
 	public void OnCatalogClick() {
 		UIManager.ShowCatalog(null);
 	}

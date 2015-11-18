@@ -16,6 +16,10 @@ public class UIManager : MonoBehaviour {
 		instance = this;
 	}
 
+	public static void ShowMenu() {
+		instance.menu.Show();
+	}
+
 	public static void ShowScan() {
 		instance.menu.Hide();
 		instance.scan.Show();
@@ -34,6 +38,11 @@ public class UIManager : MonoBehaviour {
 	public static void HideCatalog() {
 		instance.catalog.Hide();
 		instance.menu.Show();
+	}
+
+	public static void Information(string message) {
+		instance.menu.Hide();
+		InformationBox.Show(message);
 	}
 
 	public static void Confirmation(string message, Callback onConfirm, Callback onCancel) {
