@@ -28,7 +28,8 @@ public class Catalog : MonoBehaviour {
 			selected.SetSelection(false);
 		
 		selected = item;
-		selected.gameObject.layer = objectsLayer;
+		if (selected != null && selected.Item != null)
+			selected.Item.gameObject.layer = objectsLayer;
 	}
 
 	public CatalogItem GetSelected() {

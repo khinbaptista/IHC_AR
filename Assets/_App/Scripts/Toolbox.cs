@@ -34,8 +34,11 @@ public class Toolbox : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (Input.touchCount == 0 && selectedItem != null) {
-			IdleTimer();
+		Debug.Log("Touch count: " + Input.touchCount);
+
+		if (Input.touchCount == 0) {
+			if (selectedItem != null)
+				IdleTimer();
 			return;
 		}
 
@@ -80,7 +83,7 @@ public class Toolbox : MonoBehaviour {
 
 	public void Switch() {
 		Hide();
-		UIManager.ShowCatalog(ItemSwitched, Show);
+		UIManager.ShowCatalog(ItemSwitched, ()=> { UIManager.ShowToolbox(); });
 	}
 
 	public void ItemSwitched() {

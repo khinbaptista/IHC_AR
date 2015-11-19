@@ -41,9 +41,9 @@ public class UIManager : MonoBehaviour {
 		instance.menu.Show();
 	}
 
-	public static void Information(string message) {
+	public static void Information(string message, Callback onFinish) {
 		instance.menu.Hide();
-		InformationBox.Show(message);
+		InformationBox.Show(message, onFinish);
 	}
 
 	public static void Confirmation(string message, Callback onConfirm, Callback onCancel) {

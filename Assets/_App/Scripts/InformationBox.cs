@@ -9,6 +9,7 @@ public class InformationBox : MonoBehaviour {
 	[SerializeField]
 	private Text text;
 	private Animator anim;
+	private Callback onFinish;
 	
 	void Start () {
 		anim = GetComponent<Animator>();
@@ -19,9 +20,11 @@ public class InformationBox : MonoBehaviour {
 		instance = this;
 	}
 	
-	public static void Show(string message) {
+	public static void Show(string message, Callback OnFinish = null) {
 		instance.text.text = message;
 		instance.anim.SetBool("display", true);
+
+		instance.onFinish = OnFinish;
 	}
 
 	public void Hide() {
@@ -30,6 +33,7 @@ public class InformationBox : MonoBehaviour {
 	}
 
 	public void AnimationFinished() {
-
+		if (onFinish != null)
+			onFinish();
 	}
 }

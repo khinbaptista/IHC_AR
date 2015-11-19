@@ -13,11 +13,11 @@ public class MenuActions : MonoBehaviour {
 	}
 
 	public void OnCloseClick() {
-		UIManager.Confirmation("Exit?", OnConfirmExit, OnCancelExit);
+		UIManager.Confirmation("Tem certeza que deseja sair?", OnConfirmExit, OnCancelExit);
 	}
 
 	public void OnInfoClick() {
-		UIManager.Information("This is information");
+		UIManager.Information("Trabalho em progresso", UIManager.ShowToolbox);
 	}
 
 	public void OnCatalogClick() {
