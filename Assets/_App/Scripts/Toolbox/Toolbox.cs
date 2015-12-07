@@ -36,7 +36,7 @@ public class Toolbox : MonoBehaviour {
 	}
 	
 	void Update () {
-		Debug.Log("Touch count: " + Input.touchCount);
+		//Debug.Log("Touch count: " + Input.touchCount);
 
 		if (Input.touchCount == 0) {
 			if (selectedItem != null)
