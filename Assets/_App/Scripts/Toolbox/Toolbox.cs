@@ -37,13 +37,15 @@ public class Toolbox : MonoBehaviour {
 	void Update () {
 		//Debug.Log("Touch count: " + Input.touchCount);
 
-	/*	if (Input.touchCount == 0) {
+		//	if (Input.touchCount == 0) {
+
+		if (!Input.GetMouseButton(0)) {
 			if (selectedItem != null)
 				IdleTimer();
 			return;
-		}*/
+		}
 
-		Debug.Log("Touch me!");
+		//Debug.Log("Touch me!");
 		idleTimer = 0f;
 		
 		//Touch t = Input.GetTouch(0);
@@ -132,14 +134,17 @@ public class Toolbox : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.z));
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, objectsLayer))
-            {
-                selectedItem = hit.collider.gameObject.transform;
-                ObjectSelection.SelectObject(selectedItem);
-                UIManager.ShowToolbox();
-            }
+			if (Physics.Raycast(ray, out hit, Mathf.Infinity, objectsLayer)) {
+				selectedItem = hit.collider.gameObject.transform;
+				ObjectSelection.SelectObject(selectedItem);
+				UIManager.ShowToolbox();
+
+				Debug.Log("Object was hit!");
+			}
+			else
+				Debug.Log("Nothing hit...");
         }
     }
 
