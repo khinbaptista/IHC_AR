@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(ObjectSelection))]
 public class Toolbox : MonoBehaviour {
 
 	public enum Tool
 	{
-		None = 0, Move = 1, Rotate = 2
+		None = 0, Move = 1, Rotate = 2, Scale = 3
 	}
 
 	[SerializeField][Tooltip("Positional reference")]
-	private Transform reference;
+	private Transform target;
 	private Animator anim;
 	private Transform selectedItem;
 	private Tool activeTool;
@@ -28,6 +29,7 @@ public class Toolbox : MonoBehaviour {
 
 	private Vector3 positionBeforeTouch;
 	private Quaternion rotationBeforeTouch;
+	private float scaleBeforeTouch;
 
 	void Start () {
 		anim = GetComponent<Animator>();
@@ -56,6 +58,8 @@ public class Toolbox : MonoBehaviour {
 			Move(t);
 		else if (activeTool == Tool.Rotate)
 			Rotate(t);
+		else if (activeTool == Tool.Scale)
+			Scale(t);
 	}
 
 	public void Show() {
@@ -69,7 +73,7 @@ public class Toolbox : MonoBehaviour {
 	public void NewItem(Transform item) {
 		selectedItem = Instantiate(item);
 
-		selectedItem.parent = reference;
+		selectedItem.parent = target;
 		selectedItem.localPosition = Vector3.zero;
 		selectedItem.localRotation = Quaternion.identity;
 
@@ -79,6 +83,11 @@ public class Toolbox : MonoBehaviour {
 	public void SetTool(int tool) {
 		activeTool = (Tool)tool;
 		Debug.Log("Tool set to " + activeTool.ToString());
+	}
+
+	public void Remove() {
+		Destroy(selectedItem);
+		ClearSelection();
 	}
 
 	public void Switch() {
@@ -104,6 +113,7 @@ public class Toolbox : MonoBehaviour {
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, objectsLayer)) {
 				selectedItem = hit.collider.gameObject.transform;
+				ObjectSelection.SelectObject(selectedItem);
 				UIManager.ShowToolbox();
 			}
 		}
@@ -112,6 +122,8 @@ public class Toolbox : MonoBehaviour {
 	private void ClearSelection() {
 		selectedItem = null;
 		activeTool = Tool.None;
+
+		ObjectSelection.DeselectObject();
 		UIManager.HideToolbox();
 	}
 
@@ -135,9 +147,9 @@ public class Toolbox : MonoBehaviour {
 			positionBeforeTouch = selectedItem.localPosition;
 
 		CalculateDeltaTouch(t);
-
-		// the following line does not take into account the position of the camera
-		selectedItem.localPosition = positionBeforeTouch + new Vector3(deltaTouch.x, deltaTouch.y, 0) * movementSpeed;
+		
+		Vector3 direction = Camera.main.transform.rotation * new Vector3(deltaTouch.x, 0, deltaTouch.y);
+		selectedItem.localPosition = positionBeforeTouch + direction * movementSpeed;
 	}
 
 	private void Rotate(Touch t) {
@@ -149,6 +161,16 @@ public class Toolbox : MonoBehaviour {
 		// if this causes weird rotations: a) check order of quaternion multiplication or; b) change angular speed to radians
 		selectedItem.localRotation = Quaternion.AngleAxis(deltaTouch.x * rotationSpeed, Vector3.up) * rotationBeforeTouch;
 	}
+
+	private void Scale(Touch t) {
+		if (t.phase == TouchPhase.Began)
+			scaleBeforeTouch = selectedItem.localScale.x;
+
+		CalculateDeltaTouch(t);
+
+		float factor = deltaTouch.magnitude;
+		selectedItem.localScale = new Vector3(factor, factor, factor);
+    }
 
 	private void IdleTimer() {
 		idleTimer += Time.deltaTime;
