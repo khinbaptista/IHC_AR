@@ -4,8 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(ObjectSelection))]
 public class Toolbox : MonoBehaviour {
 
-	public enum Tool
-	{
+	public enum Tool {
 		None = 0, Move = 1, Rotate = 2, Scale = 3
 	}
 
@@ -38,29 +37,38 @@ public class Toolbox : MonoBehaviour {
 	void Update () {
 		//Debug.Log("Touch count: " + Input.touchCount);
 
-		if (Input.touchCount == 0) {
+	/*	if (Input.touchCount == 0) {
 			if (selectedItem != null)
 				IdleTimer();
 			return;
-		}
+		}*/
 
 		Debug.Log("Touch me!");
 		idleTimer = 0f;
 		
-		Touch t = Input.GetTouch(0);
+		//Touch t = Input.GetTouch(0);
 
-		if (selectedItem == null)
-			Select(t);
+        if (selectedItem == null)
+            Select(); //Select(t);
 
-		else if (t.tapCount == 2)
-			ClearSelection();
+      //  else if (t.tapCount == 2)
+      //      ClearSelection();
 
-		else if (activeTool == Tool.Move)
-			Move(t);
-		else if (activeTool == Tool.Rotate)
-			Rotate(t);
-		else if (activeTool == Tool.Scale)
-			Scale(t);
+        else if (activeTool == Tool.Move)
+        {
+            //    Move(t);
+            Move();
+        }
+        else if (activeTool == Tool.Rotate)
+        {
+            //     Rotate(t);
+            Rotate();
+        }
+        else if (activeTool == Tool.Scale)
+        {
+            //     Scale(t);
+            Scale();
+        }
 	}
 
 	public void Show() {
@@ -120,6 +128,21 @@ public class Toolbox : MonoBehaviour {
 		}
 	}
 
+    private void Select() {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.z));
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, objectsLayer))
+            {
+                selectedItem = hit.collider.gameObject.transform;
+                ObjectSelection.SelectObject(selectedItem);
+                UIManager.ShowToolbox();
+            }
+        }
+    }
+
 	private void ClearSelection() {
 		selectedItem = null;
 		activeTool = Tool.None;
@@ -127,6 +150,14 @@ public class Toolbox : MonoBehaviour {
 		ObjectSelection.DeselectObject();
 		UIManager.HideToolbox();
 	}
+
+    private void CalculateDeltaTouch() {
+        if (Input.GetMouseButtonDown(0)) {
+            touchStart = new Vector2(Input.mousePosition.x, Input.mousePosition.z);
+        } else if (Input.GetMouseButton(0)) {
+            deltaTouch = new Vector2(Input.mousePosition.x, Input.mousePosition.z) - touchStart;
+        }
+    }
 
 	private void CalculateDeltaTouch(Touch t) {
 		switch (t.phase) {
@@ -153,6 +184,16 @@ public class Toolbox : MonoBehaviour {
 		selectedItem.localPosition = positionBeforeTouch + direction * movementSpeed;
 	}
 
+    private void Move() {
+        if (Input.GetMouseButtonDown(0))
+            positionBeforeTouch = selectedItem.localPosition;
+
+        CalculateDeltaTouch();
+
+        Vector3 direction = Camera.main.transform.rotation * new Vector3(deltaTouch.x, 0, deltaTouch.y);
+        selectedItem.localPosition = positionBeforeTouch + direction * movementSpeed;
+    }
+
 	private void Rotate(Touch t) {
 		if (t.phase == TouchPhase.Began)
 			rotationBeforeTouch = selectedItem.localRotation;
@@ -163,6 +204,16 @@ public class Toolbox : MonoBehaviour {
 		selectedItem.localRotation = Quaternion.AngleAxis(deltaTouch.x * rotationSpeed, Vector3.up) * rotationBeforeTouch;
 	}
 
+    private void Rotate() {
+        if (Input.GetMouseButtonDown(0))
+            rotationBeforeTouch = selectedItem.localRotation;
+
+        CalculateDeltaTouch();
+
+        // if this causes weird rotations: a) check order of quaternion multiplication or; b) change angular speed to radians
+        selectedItem.localRotation = Quaternion.AngleAxis(deltaTouch.x * rotationSpeed, Vector3.up) * rotationBeforeTouch;
+    }
+
 	private void Scale(Touch t) {
 		if (t.phase == TouchPhase.Began)
 			scaleBeforeTouch = selectedItem.localScale.x;
@@ -171,6 +222,16 @@ public class Toolbox : MonoBehaviour {
 
 		float factor = deltaTouch.magnitude;
 		selectedItem.localScale = new Vector3(factor, factor, factor);
+    }
+
+    private void Scale() {
+        if (Input.GetMouseButtonDown(0))
+            scaleBeforeTouch = selectedItem.localScale.x;
+
+        CalculateDeltaTouch();
+
+        float factor = deltaTouch.magnitude;
+        selectedItem.localScale = new Vector3(factor, factor, factor);
     }
 
 	private void IdleTimer() {
