@@ -15,6 +15,7 @@ public class Toolbox : MonoBehaviour {
 	private Tool activeTool;
 	
 	private LayerMask objectsLayer;
+	public Camera cameraAR;
 
 	public float movementSpeed = 1f;
 	public float rotationSpeed = 15f;
@@ -120,7 +121,7 @@ public class Toolbox : MonoBehaviour {
 	private void Select(Touch t) {
 		if (t.phase == TouchPhase.Began && t.tapCount == 1) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ScreenPointToRay(new Vector3(t.position.x, t.position.y));
+			Ray ray = cameraAR.ScreenPointToRay(new Vector3(t.position.x, t.position.y));
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, objectsLayer)) {
 				selectedItem = hit.collider.gameObject.transform;
@@ -134,7 +135,7 @@ public class Toolbox : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+            Ray ray = cameraAR.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, objectsLayer)) {
 				selectedItem = hit.collider.gameObject.transform;
