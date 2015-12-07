@@ -20,7 +20,7 @@ public class CatalogItem : MonoBehaviour {
 	public bool isSelected { get { return _isSelected; } }
 
 	void Start () {
-		image = GetComponent<Image>();
+		image = GetComponentInChildren<Image>();
 		colorUnselected = image.color;
 	}
 

@@ -32,39 +32,47 @@ public class ObjectSelection : MonoBehaviour {
 	}
 
 	private void Grow() {
-		growing = true;
-		startScale = item.localScale.x;
-		timer = 0;
+		if (item != null) {
+			growing = true;
+			startScale = item.localScale.x;
+			timer = 0;
+		}
 	}
 
 	private void Shrink() {
-		shrinking = true;
-		startScale = item.localScale.x;
-		timer = 0;
+		if (item != null) {
+			shrinking = true;
+			startScale = item.localScale.x;
+			timer = 0;
+		}
 	}
 
 	void Update() {
-		if (growing) {
-			alpha = Mathf.Clamp01(timer / deltaTime);
-			timer += Time.deltaTime;
 
-			float factor = Mathf.Lerp(startScale, startScale + deltaScale, alpha);
-			item.localScale = new Vector3(factor, factor, factor);
+		if (item != null) {
+			if (growing) {
+				alpha = Mathf.Clamp01(timer / deltaTime);
+				timer += Time.deltaTime;
 
-			if (timer >= deltaTime) {
-				growing = false;
+				float factor = Mathf.Lerp(startScale, startScale + deltaScale, alpha);
+				item.localScale = new Vector3(factor, factor, factor);
+
+				if (timer >= deltaTime) {
+					growing = false;
+				}
+
 			}
+			else if (shrinking) {
+				alpha = Mathf.Clamp01(timer / deltaTime);
+				timer += Time.deltaTime;
 
+				if (timer >= deltaTime)
+					growing = false;
+
+				float factor = Mathf.Lerp(startScale + deltaScale, startScale, alpha);
+				item.localScale = new Vector3(factor, factor, factor);
+			}
 		}
-		else if (shrinking) {
-			alpha = Mathf.Clamp01(timer / deltaTime);
-			timer += Time.deltaTime;
 
-			if (timer >= deltaTime)
-				growing = false;
-
-			float factor = Mathf.Lerp(startScale + deltaScale, startScale, alpha);
-			item.localScale = new Vector3(factor, factor, factor);
-		}
 	}
 }

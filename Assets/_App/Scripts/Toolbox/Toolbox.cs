@@ -14,8 +14,7 @@ public class Toolbox : MonoBehaviour {
 	private Animator anim;
 	private Transform selectedItem;
 	private Tool activeTool;
-
-	[SerializeField]
+	
 	private LayerMask objectsLayer;
 
 	public float movementSpeed = 1f;
@@ -33,6 +32,7 @@ public class Toolbox : MonoBehaviour {
 
 	void Start () {
 		anim = GetComponent<Animator>();
+		objectsLayer = LayerMask.NameToLayer("Objects");
 	}
 	
 	void Update () {
@@ -86,7 +86,7 @@ public class Toolbox : MonoBehaviour {
 	}
 
 	public void Remove() {
-		Destroy(selectedItem);
+		Destroy(selectedItem.gameObject);
 		ClearSelection();
 	}
 

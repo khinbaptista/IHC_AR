@@ -11,12 +11,12 @@ public class Catalog : MonoBehaviour {
 	private bool canceled;
 
 	public bool Confirmed { get { return selected != null; } }
-
-	[SerializeField]
+	
 	private LayerMask objectsLayer;
 
 	void Start () {
 		anim = GetComponent<Animator>();
+		objectsLayer = LayerMask.NameToLayer("Objects");
 	}
 	
 	void Update () {
@@ -28,8 +28,10 @@ public class Catalog : MonoBehaviour {
 			selected.SetSelection(false);
 		
 		selected = item;
-		if (selected != null && selected.Item != null)
+		if (selected != null && selected.Item != null) {
+			Debug.Log("Object layer name " + LayerMask.LayerToName(objectsLayer.value));
 			selected.Item.gameObject.layer = objectsLayer;
+		}
 	}
 
 	public CatalogItem GetSelected() {

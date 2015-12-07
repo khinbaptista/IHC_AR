@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &109618
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ GameObject:
   - 114: {fileID: 11438236}
   - 114: {fileID: 11487872}
   m_Layer: 5
-  m_Name: Catalog Item (1)
+  m_Name: HeadBord Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +119,7 @@ GameObject:
   - 114: {fileID: 11457332}
   - 114: {fileID: 11461506}
   m_Layer: 5
-  m_Name: Catalog Item (7)
+  m_Name: Empty Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &141024
 GameObject:
   m_ObjectHideFlags: 1
@@ -173,7 +173,7 @@ GameObject:
   - 114: {fileID: 11437614}
   - 114: {fileID: 11432240}
   m_Layer: 5
-  m_Name: Catalog Item (3)
+  m_Name: Empty Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +192,7 @@ GameObject:
   - 114: {fileID: 11403722}
   - 114: {fileID: 11429106}
   m_Layer: 5
-  m_Name: Catalog Item (5)
+  m_Name: Sofa Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,7 +248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &160938
 GameObject:
   m_ObjectHideFlags: 1
@@ -260,7 +260,7 @@ GameObject:
   - 222: {fileID: 22242706}
   - 114: {fileID: 11447944}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -297,7 +297,7 @@ GameObject:
   - 114: {fileID: 11436064}
   - 114: {fileID: 11476654}
   m_Layer: 5
-  m_Name: Catalog Item (6)
+  m_Name: Empty Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,6 +336,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &167918
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22485374}
+  - 222: {fileID: 22294428}
+  - 114: {fileID: 11445374}
+  m_Layer: 0
+  m_Name: Preview
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &169192
 GameObject:
   m_ObjectHideFlags: 1
@@ -369,7 +386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &178926
 GameObject:
   m_ObjectHideFlags: 1
@@ -417,7 +434,7 @@ GameObject:
   - 114: {fileID: 11495590}
   - 114: {fileID: 11433488}
   m_Layer: 5
-  m_Name: Catalog Item (8)
+  m_Name: Empty Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -519,11 +536,10 @@ GameObject:
   m_Component:
   - 224: {fileID: 22423448}
   - 222: {fileID: 22288722}
-  - 114: {fileID: 11428362}
   - 114: {fileID: 11436834}
   - 114: {fileID: 11400556}
   m_Layer: 5
-  m_Name: Catalog Item
+  m_Name: Television Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -559,7 +575,7 @@ GameObject:
   - 114: {fileID: 11483600}
   - 114: {fileID: 11442934}
   m_Layer: 5
-  m_Name: Catalog Item (2)
+  m_Name: Table Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -593,7 +609,7 @@ GameObject:
   - 114: {fileID: 11472486}
   - 114: {fileID: 11492688}
   m_Layer: 5
-  m_Name: Catalog Item (4)
+  m_Name: Kitchen Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -679,7 +695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorSelected: {r: .375, g: .76724118, b: 1, a: 1}
-  item: {fileID: 0}
+  item: {fileID: 400000, guid: c7c3d558c0575a84d978fefda4b33fea, type: 3}
   container: {fileID: 11468318}
 --- !u!114 &11401088
 MonoBehaviour:
@@ -748,7 +764,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11429106}
-        m_MethodName: 
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -799,7 +815,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22427962}
   m_Direction: 2
   m_Value: 1
-  m_Size: .496941298
+  m_Size: .400622904
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -933,7 +949,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0266a31bf507ed340af19b968b602af3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba6f24f1e40eabe4dae044e51036adc9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1056,7 +1072,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Item name
+  m_Text: "Arm\xE1rio"
 --- !u!114 &11422158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1115,7 +1131,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Item name
+  m_Text: "Arm\xE1rio de Cozinha"
 --- !u!114 &11424254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1201,33 +1217,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11428362
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0266a31bf507ed340af19b968b602af3, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!114 &11429106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1240,7 +1229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorSelected: {r: .376470566, g: .765525043, b: 1, a: 1}
-  item: {fileID: 0}
+  item: {fileID: 400000, guid: df1666880554cd446af9d788cc7a7a19, type: 3}
   container: {fileID: 11468318}
 --- !u!114 &11430862
 MonoBehaviour:
@@ -1273,7 +1262,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Item name
+  m_Text: Vazio
 --- !u!114 &11432240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1396,7 +1385,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11476654}
-        m_MethodName: 
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1443,7 +1432,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 11428362}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1500,7 +1489,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11432240}
-        m_MethodName: 
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1552,7 +1541,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11487872}
-        m_MethodName: 
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1576,7 +1565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorSelected: {r: .376470566, g: .765525043, b: 1, a: 1}
-  item: {fileID: 0}
+  item: {fileID: 400000, guid: ea65a302fdcb31f4a85e3a7fbbb82db0, type: 3}
   container: {fileID: 11468318}
 --- !u!114 &11443938
 MonoBehaviour:
@@ -1609,7 +1598,34 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Item name
+  m_Text: "Sof\xE1"
+--- !u!114 &11445374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 6d87c7b72cf82ce408f43955102a443d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &11446070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1629,7 +1645,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0266a31bf507ed340af19b968b602af3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 622c351b365be4e4284ca5e6d732285b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1680,7 +1696,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Item name
+  m_Text: Vazio
 --- !u!114 &11447944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1700,7 +1716,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ba864ea087f4c514f97c51ad3c2d6ea4, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1766,7 +1782,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Item name
+  m_Text: Vazio
 --- !u!114 &11451014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1798,7 +1814,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Item name
+  m_Text: Vazio
 --- !u!114 &11454246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1818,7 +1834,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0266a31bf507ed340af19b968b602af3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9400c76f8f108274dbb62703ff2ffe08, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1893,7 +1909,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11461506}
-        m_MethodName: 
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1984,9 +2000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5011fa62ecca6b408366d9291804a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &11471782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2054,7 +2067,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11492688}
-        m_MethodName: 
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2199,7 +2212,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11442934}
-        m_MethodName: 
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2269,14 +2282,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Item name
+  m_Text: Mesa de Vidro
 --- !u!114 &11486672
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137770}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -2309,7 +2322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorSelected: {r: .376470566, g: .765525043, b: 1, a: 1}
-  item: {fileID: 0}
+  item: {fileID: 400000, guid: 025f4e283fb576840aa96c4bcdb97ba0, type: 3}
   container: {fileID: 11468318}
 --- !u!114 &11489752
 MonoBehaviour:
@@ -2330,7 +2343,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0266a31bf507ed340af19b968b602af3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53df1b3c1ec47994797f5ef266a50b34, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2392,7 +2405,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11433488}
-        m_MethodName: 
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2435,7 +2448,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Item name
+  m_Text: "Televis\xE3o"
 --- !u!114 &11498356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2661,6 +2674,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121318}
+--- !u!222 &22294428
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167918}
 --- !u!222 &22294768
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -2769,15 +2788,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22423448}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 15.1999998}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -.124999523, y: 0}
+  m_SizeDelta: {x: 192.75, y: 167}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22419026
 RectTransform:
@@ -2846,8 +2865,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 22457994}
   - {fileID: 22415710}
+  - {fileID: 22485374}
+  - {fileID: 22457994}
   m_Father: {fileID: 22445700}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
@@ -3101,7 +3121,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22423448}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 19.25}
@@ -3264,6 +3284,23 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 19.25}
   m_SizeDelta: {x: 0, y: 38.5}
+  m_Pivot: {x: .5, y: .5}
+--- !u!224 &22485374
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22423448}
+  m_RootOrder: 1
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 0, y: -2.67033483e-05}
+  m_SizeDelta: {x: 193, y: 167}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22485878
 RectTransform:
