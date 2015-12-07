@@ -29,7 +29,7 @@ public class Catalog : MonoBehaviour {
 		
 		selected = item;
 		if (selected != null && selected.Item != null) {
-			Debug.Log("Object layer name " + LayerMask.LayerToName(objectsLayer.value));
+			Debug.Log("Object layer " + objectsLayer.value);
 			selected.Item.gameObject.layer = objectsLayer;
 		}
 	}

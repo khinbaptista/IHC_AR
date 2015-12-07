@@ -44,6 +44,7 @@ public class Toolbox : MonoBehaviour {
 			return;
 		}
 
+		Debug.Log("Touch me!");
 		idleTimer = 0f;
 		
 		Touch t = Input.GetTouch(0);
