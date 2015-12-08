@@ -30,6 +30,14 @@ public class Toolbox : MonoBehaviour {
 	private Quaternion rotationBeforeTouch;
 	private float scaleBeforeTouch;
 
+    // Fields for movement raycast
+    private Transform myTransform;              // this transform
+    private Vector3 targetPosition;             // The destination Point
+    private float targetDistance;               //Distance between Char and Poit of Ray
+    private RaycastHit rayHit;                  //Stores the Information of the Raycasthit
+    private Vector3 eP;
+    private float rangeDistance;
+
 	void Start () {
 		anim = GetComponent<Animator>();
 		objectsLayer = LayerMask.NameToLayer("Objects");
@@ -191,13 +199,38 @@ public class Toolbox : MonoBehaviour {
 	}
 
     private void Move() {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) {
+            myTransform = selectedItem.transform;
+            targetPosition = myTransform.position;
+            rangeDistance = 0.5f;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Plane playerPlane = new Plane(Vector3.up, myTransform.position);
+            float hitdist = 0.0f;
+            if (playerPlane.Raycast(ray, out hitdist)) {
+                Vector3 targetPoint = ray.GetPoint(hitdist);
+                targetPosition = ray.GetPoint(hitdist);
+                rangeDistance = 0.5f;
+            }
+            // keep track of the distance between this gameObject and targetPosition
+            targetDistance = Vector3.Distance(targetPosition, myTransform.position);
+            // Set the Movement according to the State
+            if (targetDistance > rangeDistance) {
+                selectedItem.position = targetPosition;
+            } else {
+                targetPosition = selectedItem.position;
+            }
+        }
+
+
+      /*  if (Input.GetMouseButtonDown(0))
             positionBeforeTouch = selectedItem.localPosition;
+
+        print(positionBeforeTouch);
 
         CalculateDeltaTouch();
 
         Vector3 direction = Camera.main.transform.rotation * new Vector3(deltaTouch.x, 0, deltaTouch.y);
-        selectedItem.localPosition = positionBeforeTouch + direction * movementSpeed;
+        selectedItem.localPosition = positionBeforeTouch + direction/50 * movementSpeed;*/
     }
 
 	private void Rotate(Touch t) {
