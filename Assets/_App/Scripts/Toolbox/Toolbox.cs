@@ -47,38 +47,40 @@ public class Toolbox : MonoBehaviour {
 		//Debug.Log("Touch count: " + Input.touchCount);
 
 		//	if (Input.touchCount == 0) {
-
-		if (!Input.GetMouseButton(0)) {
+		/*if (!Input.GetMouseButton(0)) {
 			if (selectedItem != null)
 				IdleTimer();
 			return;
-		}
+		}*/
 
 		//Debug.Log("Touch me!");
-		idleTimer = 0f;
-		
-		//Touch t = Input.GetTouch(0);
+		//idleTimer = 0f;
 
-        if (selectedItem == null)
-            Select(); //Select(t);
+		if (Input.touchCount == 0)
+			return;
+
+		Touch t = Input.GetTouch(0);
+
+        //if (selectedItem == null)
+          //  Select(); //Select(t);
 
       //  else if (t.tapCount == 2)
       //      ClearSelection();
-
-        else if (activeTool == Tool.Move)
+	  
+        if (activeTool == Tool.Move)
         {
-            //    Move(t);
-            Move();
+            Move(t);
+            //Move();
         }
         else if (activeTool == Tool.Rotate)
         {
-            //     Rotate(t);
-            Rotate();
+            Rotate(t);
+            //Rotate();
         }
         else if (activeTool == Tool.Scale)
         {
-            //     Scale(t);
-            Scale();
+            Scale(t);
+            //Scale();
         }
 	}
 
@@ -189,13 +191,38 @@ public class Toolbox : MonoBehaviour {
 	}
 
 	private void Move(Touch t) {
-		if (t.phase == TouchPhase.Began)
+		myTransform = selectedItem.transform;
+		targetPosition = myTransform.position;
+		rangeDistance = 0.5f;
+
+		Ray ray = Camera.main.ScreenPointToRay(t.position);
+		Plane playerPlane = new Plane(Vector3.up, myTransform.position);
+		float hitdist = 0.0f;
+
+		if (playerPlane.Raycast(ray, out hitdist)) {
+			Vector3 targetPoint = ray.GetPoint(hitdist);
+			targetPosition = ray.GetPoint(hitdist);
+			rangeDistance = 0.5f;
+		}
+
+		// keep track of the distance between this gameObject and targetPosition
+		targetDistance = Vector3.Distance(targetPosition, myTransform.position);
+
+		// Set the Movement according to the State
+		if (targetDistance > rangeDistance) {
+			selectedItem.position = targetPosition;
+		}
+		else {
+			targetPosition = selectedItem.position;
+		}
+
+		/*if (t.phase == TouchPhase.Began)
 			positionBeforeTouch = selectedItem.localPosition;
 
 		CalculateDeltaTouch(t);
 		
 		Vector3 direction = Camera.main.transform.rotation * new Vector3(deltaTouch.x, 0, deltaTouch.y);
-		selectedItem.localPosition = positionBeforeTouch + direction * movementSpeed;
+		selectedItem.localPosition = positionBeforeTouch + direction * movementSpeed;*/
 	}
 
     private void Move() {
@@ -234,13 +261,29 @@ public class Toolbox : MonoBehaviour {
     }
 
 	private void Rotate(Touch t) {
-		if (t.phase == TouchPhase.Began)
+		if (t.phase == TouchPhase.Began) {
+			touchStart = new Vector2(t.position.x, t.position.y);
+			deltaTouch = Vector2.zero;
+		}
+		else if (t.phase != TouchPhase.Ended) {
+			touchStart = deltaTouch;
+			deltaTouch = new Vector2(t.position.x, t.position.y);
+			rotationBeforeTouch = selectedItem.localRotation;
+			if (deltaTouch.x > touchStart.x) {
+				selectedItem.localRotation = Quaternion.AngleAxis(rotationSpeed, Vector3.up) * rotationBeforeTouch;
+			}
+			else if (deltaTouch.x < touchStart.x) {
+				selectedItem.localRotation = Quaternion.AngleAxis(-rotationSpeed, Vector3.up) * rotationBeforeTouch;
+			}
+		}
+
+		/*if (t.phase == TouchPhase.Began)
 			rotationBeforeTouch = selectedItem.localRotation;
 
 		CalculateDeltaTouch(t);
 
 		// if this causes weird rotations: a) check order of quaternion multiplication or; b) change angular speed to radians
-		selectedItem.localRotation = Quaternion.AngleAxis(deltaTouch.x * rotationSpeed, Vector3.up) * rotationBeforeTouch;
+		selectedItem.localRotation = Quaternion.AngleAxis(deltaTouch.x * rotationSpeed, Vector3.up) * rotationBeforeTouch;*/
 	}
 
     private void Rotate() {
@@ -259,14 +302,30 @@ public class Toolbox : MonoBehaviour {
     }
 
 	private void Scale(Touch t) {
-		if (t.phase == TouchPhase.Began)
+		if (t.phase == TouchPhase.Began) {
+			touchStart = new Vector2(t.position.x, t.position.y);
+			deltaTouch = Vector2.zero;
+		}
+		else if (t.phase != TouchPhase.Ended) {
+			touchStart = deltaTouch;
+			deltaTouch = new Vector2(t.position.x, t.position.y);
+			//scaleBeforeTouch = selectedItem.localScale.x;
+			if (deltaTouch.y > touchStart.y) {
+				selectedItem.localScale = new Vector3(1.1f * selectedItem.localScale.x, 1.1f * selectedItem.localScale.y, 1.1f * selectedItem.localScale.z);
+			}
+			else if (deltaTouch.y < touchStart.y) {
+				selectedItem.localScale = new Vector3(0.9f * selectedItem.localScale.x, 0.9f * selectedItem.localScale.y, 0.9f * selectedItem.localScale.z);
+			}
+		}
+
+		/*if (t.phase == TouchPhase.Began)
 			scaleBeforeTouch = selectedItem.localScale.x;
 
 		CalculateDeltaTouch(t);
 
 		float factor = deltaTouch.magnitude;
-		selectedItem.localScale = new Vector3(factor, factor, factor);
-    }
+		selectedItem.localScale = new Vector3(factor, factor, factor);*/
+	}
 
     private void Scale() {
         if (Input.GetMouseButtonDown(0))
