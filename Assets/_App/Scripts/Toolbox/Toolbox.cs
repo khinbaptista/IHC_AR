@@ -18,7 +18,7 @@ public class Toolbox : MonoBehaviour {
 	public Camera cameraAR;
 
 	public float movementSpeed = 1f;
-	public float rotationSpeed = 15f;
+	public float rotationSpeed = 0.001f;
 	public float idleTimeToDeselection = 5f;
 
 	private float idleTimer;
@@ -244,13 +244,18 @@ public class Toolbox : MonoBehaviour {
 	}
 
     private void Rotate() {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) {
+            touchStart = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        } else if (Input.GetMouseButton(0)) {
+            touchStart = deltaTouch;
+            deltaTouch = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             rotationBeforeTouch = selectedItem.localRotation;
-
-        CalculateDeltaTouch();
-
-        // if this causes weird rotations: a) check order of quaternion multiplication or; b) change angular speed to radians
-        selectedItem.localRotation = Quaternion.AngleAxis(deltaTouch.x * rotationSpeed, Vector3.up) * rotationBeforeTouch;
+            if (deltaTouch.x > touchStart.x) {
+                selectedItem.localRotation = Quaternion.AngleAxis(rotationSpeed, Vector3.up) * rotationBeforeTouch;
+            } else if (deltaTouch.x < touchStart.x) {
+                selectedItem.localRotation = Quaternion.AngleAxis(-rotationSpeed, Vector3.up) * rotationBeforeTouch;
+            }
+        }
     }
 
 	private void Scale(Touch t) {
