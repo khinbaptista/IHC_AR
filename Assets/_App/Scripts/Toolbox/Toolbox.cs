@@ -270,12 +270,34 @@ public class Toolbox : MonoBehaviour {
 
     private void Scale() {
         if (Input.GetMouseButtonDown(0))
-            scaleBeforeTouch = selectedItem.localScale.x;
+        {
+            touchStart = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            touchStart = deltaTouch;
+            deltaTouch = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            //scaleBeforeTouch = selectedItem.localScale.x;
+            if (deltaTouch.y > touchStart.y)
+            {
+                selectedItem.localScale = new Vector3(1.1f * selectedItem.localScale.x, 1.1f * selectedItem.localScale.y, 1.1f * selectedItem.localScale.z);
+            }
+            else if (deltaTouch.y < touchStart.y)
+            {
+                selectedItem.localScale = new Vector3(0.9f * selectedItem.localScale.x, 0.9f * selectedItem.localScale.y, 0.9f * selectedItem.localScale.z);
+            }
+        }
+     //   if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) {
+     //       scaleBeforeTouch = selectedItem.localScale.x;
+//
+//}
+        //if (Input.GetMouseButtonDown(0))
+       // scaleBeforeTouch = selectedItem.localScale.x;
 
-        CalculateDeltaTouch();
+       // CalculateDeltaTouch();
 
-        float factor = deltaTouch.magnitude;
-        selectedItem.localScale = new Vector3(factor, factor, factor);
+       // float factor = deltaTouch.magnitude;
+       // selectedItem.localScale = new Vector3(factor, factor, factor);
     }
 
 	private void IdleTimer() {
